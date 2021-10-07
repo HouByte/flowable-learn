@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author: Vincent Vic
  * @since: 2021/10/07
  */
-public class DbTest {
+public class TableGeneration {
     public static void main(String[] args) {
         //1、创建ProcessEngineConfiguration实例,该实例可以配置与调整流程引擎的设置
         ProcessEngineConfiguration cfg=new StandaloneProcessEngineConfiguration()
