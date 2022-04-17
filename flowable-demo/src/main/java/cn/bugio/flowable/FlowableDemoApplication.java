@@ -13,7 +13,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
  * @since: 2021/10/07
  */
 @SpringBootApplication
-
 public class FlowableDemoApplication {
 
     public static void main(String[] args) {

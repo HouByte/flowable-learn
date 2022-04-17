@@ -7,7 +7,7 @@ import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * <h1></h1>
+ * <h1>原生ProcessEngine构建</h1>
  *
  * @version 1.0
  * @author: Vincent Vic
@@ -23,9 +23,11 @@ public class TableGeneration {
                 .setJdbcUsername("root")
                 .setJdbcPassword("root")
                 .setJdbcDriver("com.mysql.jdbc.Driver")
+                // 初始化基础表，不需要的可以改为 DB_SCHEMA_UPDATE_FALSE
                 .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
         //4、初始化ProcessEngine流程引擎实例
         ProcessEngine processEngine=cfg.buildProcessEngine();
+
     }
 
 }

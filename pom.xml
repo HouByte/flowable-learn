@@ -16,6 +16,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>flowable-demo</module>
+        <module>flowable-ui</module>
     </modules>
 
     <properties>

@@ -51,9 +51,23 @@
         </dependency>
         <dependency>
             <groupId>org.flowable</groupId>
-            <artifactId>flowable-spring-boot-starter-process</artifactId>
+            <artifactId>flowable-spring-boot-starter</artifactId>
             <version>6.7.0</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.flowable</groupId>-->
+<!--            <artifactId>flowable-spring-boot-starter-process</artifactId>-->
+<!--            <version>6.7.0</version>-->
+<!--        </dependency>-->
+
+
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-bpmn-layout</artifactId>
+            <version>6.7.0</version>
+        </dependency>
+
+
 
         <!-- Flowable 内部日志采用 SLF4J -->
         <dependency>
@@ -83,6 +97,11 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.76</version>
         </dependency>
     </dependencies>
 

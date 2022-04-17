@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:flowable="http://flowable.org/bpmn"
+             typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.flowable.org/processdef">
+
+  <process id="holidayRequest" name="Holiday Request" isExecutable="true">
+
+    <startEvent id="startEvent" flowable:formKey="form1"/>
+    <sequenceFlow sourceRef="startEvent" targetRef="approveTask"/>
+
+    <userTask id="approveTask" name="Approve or reject request" flowable:formKey="form1" flowable:candidateGroups="managers"/>
+    <sequenceFlow sourceRef="approveTask" targetRef="holidayApprovedTask"/>
+
+    <userTask id="holidayApprovedTask" name="Holiday approved" flowable:formKey="form1" flowable:assignee="employee"/>
+    <sequenceFlow sourceRef="holidayApprovedTask" targetRef="approveEnd"/>
+
+    <endEvent id="approveEnd"/>
+
+  </process>
+
+</definitions>

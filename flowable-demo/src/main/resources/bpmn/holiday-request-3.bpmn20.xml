@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:flowable="http://flowable.org/bpmn" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.activiti.org/processdef">
+  <process id="oa_leave_2" name="OA 请假" isExecutable="true" flowable:processCategory="leave">
+    <startEvent id="sid-590598C4-B0C6-4DCE-8C65-1B4C473964D2" flowable:initiator="INITIATOR"  flowable:formKey="test"/>
+    <userTask id="task-01" name="请假申请发起" flowable:dataType="fixed" flowable:assignee="${INITIATOR}" />
+    <sequenceFlow id="sid-C49DB46C-17B9-469E-934C-015637BA86FC" sourceRef="sid-590598C4-B0C6-4DCE-8C65-1B4C473964D2" targetRef="task-01" />
+    <exclusiveGateway id="sid-DF236505-2B41-497B-BB12-D5B36A65A489" />
+    <sequenceFlow id="sid-D013FF31-68E1-4326-9A6D-520D9F03F11B" sourceRef="task-01" targetRef="sid-DF236505-2B41-497B-BB12-D5B36A65A489" />
+    <userTask id="task-21" name="HR 审批" flowable:dataType="fixed" flowable:assignee="hr"  />
+    <endEvent id="sid-A0912D5A-0AEF-47E6-A798-A29CE1FAD7FF">
+      <incoming>sid-59046FB9-ABD0-43B6-9FA0-916D6972573A</incoming>
+    </endEvent>
+    <sequenceFlow id="sid-A57EA9A3-6926-415A-92E1-73B7F7D8BA13" sourceRef="task-21" targetRef="sid-A0912D5A-0AEF-47E6-A798-A29CE1FAD7FF" />
+    <sequenceFlow id="sid-59046FB9-ABD0-43B6-9FA0-916D6972573A" name="请假小于等于 3 天" sourceRef="sid-DF236505-2B41-497B-BB12-D5B36A65A489" targetRef="sid-A0912D5A-0AEF-47E6-A798-A29CE1FAD7FF">
+      <conditionExpression xsi:type="tFormalExpression">${day &lt;= 3}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-0CAF1537-A2F7-46D2-9807-77F81C8143A7" name="请假大于 3 天" sourceRef="sid-DF236505-2B41-497B-BB12-D5B36A65A489" targetRef="task-21">
+      <conditionExpression xsi:type="tFormalExpression">${day &gt; 3}</conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_leave2">
+    <bpmndi:BPMNPlane id="oa_leave_di" bpmnElement="oa_leave">
+      <bpmndi:BPMNEdge id="BPMNEdge_sid-0CAF1537-A2F7-46D2-9807-77F81C8143A7" bpmnElement="sid-0CAF1537-A2F7-46D2-9807-77F81C8143A7">
+        <omgdi:waypoint x="443.58097165991904" y="203.08097165991902" />
+        <omgdi:waypoint x="444" y="100" />
+        <omgdi:waypoint x="525" y="100" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="411" y="127" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_sid-59046FB9-ABD0-43B6-9FA0-916D6972573A" bpmnElement="sid-59046FB9-ABD0-43B6-9FA0-916D6972573A">
+        <omgdi:waypoint x="464" y="223" />
+        <omgdi:waypoint x="750" y="223" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="464" y="198" width="90" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_sid-A57EA9A3-6926-415A-92E1-73B7F7D8BA13" bpmnElement="sid-A57EA9A3-6926-415A-92E1-73B7F7D8BA13">
+        <omgdi:waypoint x="625" y="132.53968253968253" />
+        <omgdi:waypoint x="752.2660465436063" y="215.36361759187076" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_sid-D013FF31-68E1-4326-9A6D-520D9F03F11B" bpmnElement="sid-D013FF31-68E1-4326-9A6D-520D9F03F11B">
+        <omgdi:waypoint x="385" y="223" />
+        <omgdi:waypoint x="423.5" y="223" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_sid-C49DB46C-17B9-469E-934C-015637BA86FC" bpmnElement="sid-C49DB46C-17B9-469E-934C-015637BA86FC">
+        <omgdi:waypoint x="233.5" y="223" />
+        <omgdi:waypoint x="285" y="223" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_sid-590598C4-B0C6-4DCE-8C65-1B4C473964D2" bpmnElement="sid-590598C4-B0C6-4DCE-8C65-1B4C473964D2">
+        <omgdc:Bounds x="203.5" y="208" width="30" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="task-01_di" bpmnElement="task-01">
+        <omgdc:Bounds x="285" y="183" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_sid-DF236505-2B41-497B-BB12-D5B36A65A489" bpmnElement="sid-DF236505-2B41-497B-BB12-D5B36A65A489" isMarkerVisible="true">
+        <omgdc:Bounds x="423.5" y="203" width="40" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="task-21_di" bpmnElement="task-21">
+        <omgdc:Bounds x="525" y="60" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_sid-A0912D5A-0AEF-47E6-A798-A29CE1FAD7FF" bpmnElement="sid-A0912D5A-0AEF-47E6-A798-A29CE1FAD7FF">
+        <omgdc:Bounds x="750" y="209" width="28" height="28" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

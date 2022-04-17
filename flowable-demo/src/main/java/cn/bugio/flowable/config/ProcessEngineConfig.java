@@ -41,8 +41,11 @@ public class ProcessEngineConfig {
         springProcessEngineConfiguration.setDataSource(dataSource);
         springProcessEngineConfiguration.setDatabaseSchemaUpdate("true");
         springProcessEngineConfiguration.setTransactionManager(dataSourceTransactionManager(dataSource));
+
         return springProcessEngineConfiguration;
     }
+
+
 
 
 }
