@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:flowable="http://flowable.org/bpmn" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.flowable.org/processdef">
+  <process id="oa_leave_1" name="OA 请假" isExecutable="true">
+    <startEvent id="startEvent">
+      <outgoing>Flow_0tcv80j</outgoing>
+    </startEvent>
+    <sequenceFlow sourceRef="startEvent" targetRef="approveTask" />
+    <userTask id="approveTask" name="Approve or reject request" />
+    <sequenceFlow sourceRef="approveTask" targetRef="decision" />
+    <exclusiveGateway id="decision" />
+    <sequenceFlow sourceRef="decision" targetRef="externalSystemCall">
+      <conditionExpression xsi:type="tFormalExpression">
+          ${approved}
+        </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="decision" targetRef="sendRejectionMail">
+      <conditionExpression xsi:type="tFormalExpression">
+          ${!approved}
+        </conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="externalSystemCall" name="Enter holidays in external system" flowable:class="org.flowable.CallExternalSystemDelegate" />
+    <sequenceFlow sourceRef="externalSystemCall" targetRef="holidayApprovedTask" />
+    <userTask id="holidayApprovedTask" name="Holiday approved" />
+    <sequenceFlow sourceRef="holidayApprovedTask" targetRef="approveEnd" />
+    <serviceTask id="sendRejectionMail" name="Send out rejection email" flowable:class="org.flowable.SendRejectionMail" />
+    <sequenceFlow sourceRef="sendRejectionMail" targetRef="rejectEnd" />
+    <endEvent id="approveEnd" />
+    <endEvent id="rejectEnd" />
+    <sequenceFlow id="Flow_0tcv80j" sourceRef="startEvent" targetRef="Activity_0tqff7g" />
+    <serviceTask id="Activity_0tqff7g" name="发送邮件" flowable:class="cn.flowboot.flowable.delegate.SendRejectionMail">
+      <incoming>Flow_0tcv80j</incoming>
+      <outgoing>Flow_128sbqa</outgoing>
+    </serviceTask>
+    <endEvent id="Event_1qc5bw9">
+      <incoming>Flow_128sbqa</incoming>
+    </endEvent>
+    <sequenceFlow id="Flow_128sbqa" sourceRef="Activity_0tqff7g" targetRef="Event_1qc5bw9" />
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_transactional-collapsed-subprocess">
+    <bpmndi:BPMNPlane id="BPMNPlane_transactional-collapsed-subprocess" bpmnElement="oa_leave_1">
+      <bpmndi:BPMNEdge id="Flow_0tcv80j_di" bpmnElement="Flow_0tcv80j">
+        <omgdi:waypoint x="130" y="178" />
+        <omgdi:waypoint x="180" y="178" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_128sbqa_di" bpmnElement="Flow_128sbqa">
+        <omgdi:waypoint x="280" y="178" />
+        <omgdi:waypoint x="332" y="178" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_startEvent" bpmnElement="startEvent">
+        <omgdc:Bounds x="100" y="163" width="30" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1eovkfr_di" bpmnElement="Activity_0tqff7g">
+        <omgdc:Bounds x="180" y="138" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1qc5bw9_di" bpmnElement="Event_1qc5bw9">
+        <omgdc:Bounds x="332" y="160" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

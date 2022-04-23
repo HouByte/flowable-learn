@@ -1,4 +1,4 @@
-package cn.flowable.flowable;
+package cn.flowboot.flowable;
 
 import com.alibaba.fastjson.JSON;
 import liquibase.pro.packaged.O;
