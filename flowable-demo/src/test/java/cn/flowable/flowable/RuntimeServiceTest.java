@@ -1,4 +1,4 @@
-package cn.bugio.flowable;
+package cn.flowable.flowable;
 
 import com.alibaba.fastjson.JSON;
 import liquibase.pro.packaged.O;
@@ -33,41 +33,39 @@ public class RuntimeServiceTest {
 
 
     /**
-     * 最基础启动一个流程
+     * 无参启动流程
      */
     @Test
     public void startProcess(){
         //启动流程
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oa_leave");
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oa_leave_1","XXX");
         System.out.println("提交成功.流程Id为：" + processInstance.getId());
     }
 
 
-
-
+    /**
+     * 带参数部署
+     */
     @Test
     public void startProcessAddParameter(){
         //设置参数
         Map<String, Object> param = new HashMap<>();
         param.put("day","10");
         //启动流程
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oa_leave",param);
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oa_leave_2",param);
         System.out.println("提交成功.流程Id为：" + processInstance.getId());
     }
 
 
     /**
-     * 最基础启动一个流程
+     * 设置流程发起人id启动一个流程
      */
     @Test
-    public void startProcessByInitiatorAndParameter(){
+    public void startProcessByInitiator(){
         //设置流程发起人id 流程引擎会对应到变量：INITIATOR
         Authentication.setAuthenticatedUserId("user");
-        //设置参数
-        Map<String, Object> param = new HashMap<>();
-        param.put("day","10");
         //启动流程
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oa_leave_2",param);
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oa_leave_3");
         //这个方法最终使用一个ThreadLocal类型的变量进行存储，也就是与当前的线程绑定，所以流程实例启动完毕之后，需要设置为null，防止多线程的时候出问题。
         Authentication.setAuthenticatedUserId(null);
         System.out.println("提交成功.流程Id为：" + processInstance.getId());
@@ -85,23 +83,32 @@ public class RuntimeServiceTest {
         }
     }
 
+    /**
+     * 运行实例查询
+     */
     @Test
     public void list(){
         List<ProcessInstance> list = runtimeService.createProcessInstanceQuery().list();
         for (ProcessInstance processInstance : list) {
-            System.out.println(processInstance.getId()+","+ processInstance.isSuspended());
+            System.out.println(processInstance.getStartTime()+"|"+processInstance.getProcessInstanceId()+"|"+
+                    processInstance.getStartUserId()+"|"+processInstance.getProcessDefinitionName()+":"+
+                    processInstance.isSuspended());
         }
     }
+
+    /**
+     * 激活或挂起
+     */
     @Test
     public void activateOrsuspend(){
         int state = 1;
         // 激活
         if (state == 1) {
-            runtimeService.activateProcessInstanceById("132501");
+            runtimeService.activateProcessInstanceById("9d0f0db0-c2d3-11ec-89c5-004238a4ec73");
         }
         // 挂起
         if (state == 2) {
-            runtimeService.suspendProcessInstanceById("132501");
+            runtimeService.suspendProcessInstanceById("9d0f0db0-c2d3-11ec-89c5-004238a4ec73");
         }
     }
 }

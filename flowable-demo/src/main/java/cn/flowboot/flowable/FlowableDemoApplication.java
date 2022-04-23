@@ -1,9 +1,7 @@
-package cn.bugio.flowable;
+package cn.flowboot.flowable;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
  * <h1></h1>

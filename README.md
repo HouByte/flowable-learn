@@ -377,8 +377,7 @@ public void complete(String taskId);
 public void complete(String taskId, Map<String, Object> variables);
 public void complete(String taskId, Map<String, Object> variables, boolean localScope) ;
 ```
-其中：taskId(对应act_ru_task中的id_)，variables（下一次任务所需要的参数）,作用是完成这一次任务，并且下一步任务需要流程变量的。要注意的是localScope这个参数：localScope（存储范围：本任务） 。当这个布尔值为true表示作用范围为当前任务，当任务结束后，再也取不到这个值了，act_ru_variables这个表中也没有这个参数的信息了；如果为false表示这个变量是全局的，任务结束后在act_ru_variables表中仍然能查到变量信息。相关内容可以查看下面这篇文章：
-https://blog.csdn.net/u013026207/article/details/53405265
+其中：taskId(对应act_ru_task中的id_)，variables（下一次任务所需要的参数）,作用是完成这一次任务，并且下一步任务需要流程变量的。要注意的是localScope这个参数：localScope（存储范围：本任务） 。当这个布尔值为true表示作用范围为当前任务，当任务结束后，再也取不到这个值了，act_ru_variables这个表中也没有这个参数的信息了；如果为false表示这个变量是全局的，任务结束后在act_ru_variables表中仍然能查到变量信息。
 
 
 

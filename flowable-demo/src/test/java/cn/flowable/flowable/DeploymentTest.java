@@ -1,4 +1,4 @@
-package cn.bugio.flowable;
+package cn.flowable.flowable;
 
 import com.alibaba.druid.util.Base64;
 import com.alibaba.fastjson.JSONObject;
@@ -51,8 +51,8 @@ public class DeploymentTest {
     public void deploymentByFile(){
         //加载流程
         Deployment deployment=repositoryService.createDeployment()
-                .addClasspathResource("bpmn/holiday-request-3.bpmn20.xml")
-                .name("OA-INITIATOR-请假流程ByFile")
+                .addClasspathResource("bpmn/holiday-request.bpmn20.xml")
+                .name("OA-1-请假流程ByFile")
                 .deploy();
 
     }

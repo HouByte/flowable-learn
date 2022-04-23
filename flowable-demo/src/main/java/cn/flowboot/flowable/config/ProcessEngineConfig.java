@@ -1,4 +1,4 @@
-package cn.bugio.flowable.config;
+package cn.flowboot.flowable.config;
 
 /**
  * <h1>流程引擎配置文件</h1>

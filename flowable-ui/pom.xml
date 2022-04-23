@@ -37,9 +37,14 @@
 
         <dependency>
             <groupId>org.flowable</groupId>
-            <artifactId>flowable-spring-boot-starter-basic</artifactId>
-            <version>${flowable.version}</version>
+            <artifactId>flowable-spring-boot-starter</artifactId>
+            <version>6.7.0</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.flowable</groupId>-->
+<!--            <artifactId>flowable-spring-boot-starter-basic</artifactId>-->
+<!--            <version>${flowable.version}</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
