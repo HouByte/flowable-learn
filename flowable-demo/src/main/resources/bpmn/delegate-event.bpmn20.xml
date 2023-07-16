@@ -27,7 +27,7 @@
     <endEvent id="approveEnd" />
     <endEvent id="rejectEnd" />
     <sequenceFlow id="Flow_0tcv80j" sourceRef="startEvent" targetRef="Activity_0tqff7g" />
-    <serviceTask id="Activity_0tqff7g" name="发送邮件" flowable:class="cn.flowboot.flowable.delegate.SendRejectionMail">
+    <serviceTask id="Activity_0tqff7g" name="发送邮件" flowable:class="cn.meshed.flowable.delegate.SendRejectionMail">
       <incoming>Flow_0tcv80j</incoming>
       <outgoing>Flow_128sbqa</outgoing>
     </serviceTask>
