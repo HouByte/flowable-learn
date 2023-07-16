@@ -51,8 +51,8 @@ public class DeploymentTest {
     public void deploymentByFile(){
         //加载流程
         Deployment deployment=repositoryService.createDeployment()
-                .addClasspathResource("bpmn/delegate-event.bpmn20.xml")
-                .name("触发事件")
+                .addClasspathResource("bpmn/countersign.bpmn20.xml")
+                .name("会签")
                 .deploy();
 
     }

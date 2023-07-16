@@ -38,7 +38,7 @@ public class RuntimeServiceTest {
     @Test
     public void startProcess(){
         //启动流程
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oa_leave_1","XXX");
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("countersign");
         System.out.println("提交成功.流程Id为：" + processInstance.getId());
     }
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef" exporter="Flowable Open Source Modeler" exporterVersion="6.8.0">
+  <process id="countersign" name="会签" isExecutable="true">
+    <extensionElements>
+      <flowable:executionListener event="start" class="cn.meshed.flowable.countersign.listens.MultiInstanceListen"></flowable:executionListener>
+    </extensionElements>
+    <startEvent id="startEvent1" flowable:formFieldValidation="true"></startEvent>
+    <userTask id="sid-516771BA-1A6F-4932-849A-FBADA181A0A7" name="审批" flowable:assignee="${assignee}" flowable:candidateUsers="1,2" flowable:formFieldValidation="true">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+        <flowable:executionListener event="start" class="cn.meshed.flowable.countersign.listens.MultiInstanceListen"></flowable:executionListener>
+      </extensionElements>
+      <multiInstanceLoopCharacteristics isSequential="false" flowable:collection="sid-516771BA-1A6F-4932-849A-FBADA181A0A7_assigneeList" flowable:elementVariable="assignee">
+        <extensionElements></extensionElements>
+        <completionCondition>${multiInstance.accessCondition(execution)}</completionCondition>
+      </multiInstanceLoopCharacteristics>
+    </userTask>
+    <sequenceFlow id="sid-E645A073-BFF7-4B3B-AE20-D1E1E536AA7F" sourceRef="startEvent1" targetRef="sid-516771BA-1A6F-4932-849A-FBADA181A0A7"></sequenceFlow>
+    <endEvent id="sid-E34B2697-6672-4FC5-B8DC-BCEBCE0BB5A5"></endEvent>
+    <sequenceFlow id="sid-41C2FB04-867D-45E5-A28D-D700F83370C1" sourceRef="sid-516771BA-1A6F-4932-849A-FBADA181A0A7" targetRef="sid-E34B2697-6672-4FC5-B8DC-BCEBCE0BB5A5"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_countersign">
+    <bpmndi:BPMNPlane bpmnElement="countersign" id="BPMNPlane_countersign">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="99.99999850988391" y="178.99998984038857"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-516771BA-1A6F-4932-849A-FBADA181A0A7" id="BPMNShape_sid-516771BA-1A6F-4932-849A-FBADA181A0A7">
+        <omgdc:Bounds height="80.0" width="99.99999999999994" x="224.9999966472388" y="153.99998754560994"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-E34B2697-6672-4FC5-B8DC-BCEBCE0BB5A5" id="BPMNShape_sid-E34B2697-6672-4FC5-B8DC-BCEBCE0BB5A5">
+        <omgdc:Bounds height="28.0" width="28.0" x="427.99998703599005" y="179.99998715817975"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-41C2FB04-867D-45E5-A28D-D700F83370C1" id="BPMNEdge_sid-41C2FB04-867D-45E5-A28D-D700F83370C1" flowable:sourceDockerX="49.99999999999997" flowable:sourceDockerY="40.0" flowable:targetDockerX="14.0" flowable:targetDockerY="14.0">
+        <omgdi:waypoint x="324.9499870527614" y="193.99998742961287"></omgdi:waypoint>
+        <omgdi:waypoint x="427.9999813860823" y="193.99998719054292"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-E645A073-BFF7-4B3B-AE20-D1E1E536AA7F" id="BPMNEdge_sid-E645A073-BFF7-4B3B-AE20-D1E1E536AA7F" flowable:sourceDockerX="15.0" flowable:sourceDockerY="15.0" flowable:targetDockerX="49.99999999999997" flowable:targetDockerY="40.0">
+        <omgdi:waypoint x="129.94999779601162" y="193.99998962525308"></omgdi:waypoint>
+        <omgdi:waypoint x="224.9999966472388" y="193.99998826201116"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

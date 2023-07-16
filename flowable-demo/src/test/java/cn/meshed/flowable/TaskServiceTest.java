@@ -36,7 +36,7 @@ public class TaskServiceTest {
     public void searchTaskAll(){
         System.out.println("===== task ====");
         //获取需要审批的任务
-        List<Task> tasks = taskService.createTaskQuery().processInstanceBusinessKey("XXX").list();
+        List<Task> tasks = taskService.createTaskQuery().list();
         for (Task task : tasks) {
             System.out.println("task ==> "+task+" ProcessInstanceId = "+task.getProcessInstanceId()+" assignee : "+task.getAssignee());
         }
@@ -62,7 +62,7 @@ public class TaskServiceTest {
     @Test
     public void completeTask(){
         System.out.println("===== task ====");
-        taskService.complete("9d159d68-c2d3-11ec-89c5-004238a4ec73");
+        taskService.complete("78342232-238c-11ee-bf42-004238a4ec73");
 
     }
 
